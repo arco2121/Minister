@@ -1,0 +1,7 @@
+torch
+torchvision
+flask
+flask-cors
+Pillow
+pandas
+kagglehub

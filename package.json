@@ -1,0 +1,30 @@
+{
+  "name": "minister",
+  "version": "1.0.0",
+  "description": "A model with webapp",
+  "keywords": [
+    "mnist"
+  ],
+  "homepage": "https://github.com/arco2121/Minister#readme",
+  "bugs": {
+    "url": "https://github.com/arco2121/Minister/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arco2121/Minister.git"
+  },
+  "license": "ISC",
+  "author": "arco2121",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "train",
+    "train": "python model.py",
+    "app": "node app.js",
+    "routes": "python routes.py"
+  },
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1"
+  }
+}

@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap');
+
+* {
+    font-family: "Bitcount Grid Double", system-ui;
+    font-weight: bold;
+    text-align: center;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    background: #000000;
+    color: #ffffff;
+}
+
+html {
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+.column {
+    width: auto;
+    height: 100vh;
+    justify-content: space-around;
+    align-items: center;
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+canvas {
+    height: 50vh;
+    width: auto;
+    aspect-ratio: 1/1;
+    border: solid #ffffff 4px;
+    border-radius: 15px;
+}
+@media (orientation: portrait) {
+    canvas {
+        width: 70vh;
+        height: auto;
+        aspect-ratio: 1/1;
+        border: solid #ffffff 4px;
+        border-radius: 15px;
+    }
+}
+
+button {
+    border: solid #ffffff 4px;
+    border-radius: 15px;
+    background: black;
+    color: white;
+    padding: 15px;
+    transition: all 0.2s ease;
+}
+
+button:active {
+    scale: 0.9;
+}
+
+.row {
+    flex-direction: row;
+    height: auto;
+}
+
+.full {
+    height: 100vh;
+}
