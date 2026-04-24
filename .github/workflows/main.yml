@@ -1,0 +1,32 @@
+name: Deploy to Hugging Face
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: false
+
+      - name: Push to Hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_KEY }}
+        run: |
+          pip install huggingface_hub
+          python -c "
+          from huggingface_hub import HfApi
+          api = HfApi()
+          api.upload_folder(
+            folder_path='.',
+            repo_id='arco2120/minister',
+            repo_type='space',
+            token='$HF_TOKEN',
+            delete_patterns='*',
+          )
+          "
