@@ -34,10 +34,14 @@ class SuperNet(nn.Module):
     def forward(self, x):
         return self.classifier(self.features(x))
 
+try:
+    model = SuperNet(num_classes=len(class_map))
+    model.load_state_dict(torch.load("modellino.pth"))
+    model.eval()
+except:
+    print("Manca il modellino mi sa")
+    exit(1)
 
-model = SuperNet(num_classes=len(class_map))
-model.load_state_dict(torch.load("super_modellino.pth"))
-model.eval()
 
 
 def transform_image(image_bytes):

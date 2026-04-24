@@ -1,9 +1,10 @@
 const express = require("express");
 const http = require("node:http");
 const ejs = require("ejs");
-const render = (res,page) => {
+const render = (res,page, params = {}) => {
     res.render("index", {
-        page: page
+        page,
+        params
     });
 }
 
@@ -16,8 +17,8 @@ app.set("view engine", "ejs");
 app.set('trust proxy', 1);
 app.use(express.json());
 
-app.get("/", (_, res) => render('output'));
-app.get("/test", (_, res) => render('test'));
+app.get("/", (_, res) => render(res, 'output'));
+app.get("/test", (_, res) => render(res, 'test'));
 
 server.listen(7460, (err) => {
     if(err) console.error(err);

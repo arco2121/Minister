@@ -4,6 +4,16 @@
     font-family: "Bitcount Grid Double", system-ui;
     font-weight: bold;
     text-align: center;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+:focus {
+    outline: none;
 }
 
 body {
@@ -30,26 +40,22 @@ html {
     flex-direction: column;
 }
 
-canvas {
+.canvas {
     height: 50vh;
     width: auto;
     aspect-ratio: 1/1;
     border: solid #ffffff 4px;
     border-radius: 15px;
 }
-@media (orientation: portrait) {
-    canvas {
-        width: 70vh;
-        height: auto;
-        aspect-ratio: 1/1;
-        border: solid #ffffff 4px;
-        border-radius: 15px;
-    }
+
+textarea {
+    font-family: "Comic Sans MS";
+    font-weight: normal;
 }
 
 button {
     border: solid #ffffff 4px;
-    border-radius: 15px;
+    border-radius: 35px;
     background: black;
     color: white;
     padding: 15px;
@@ -63,8 +69,24 @@ button:active {
 .row {
     flex-direction: row;
     height: auto;
+    gap: 25px;
+    width: 100%;
 }
 
 .full {
     height: 100vh;
+}
+
+@media (orientation: portrait) {
+    .canvas {
+        width: 70vw;
+        height: auto;
+        aspect-ratio: 1/1;
+        border: solid #ffffff 4px;
+        border-radius: 15px;
+    }
+    .mobile-row {
+        flex-direction: column;
+        padding: 15px;
+    }
 }

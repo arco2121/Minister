@@ -28,7 +28,7 @@ const draw = (event)=> {
 }
 
 canvas.addEventListener('mousedown', () => isDrawing = true);
-canvas.addEventListener('mouseup', () => {
+canvas.addEventListener('mouseup', async () => {
     isDrawing = false;
     ctx.beginPath();
 });
@@ -36,7 +36,7 @@ canvas.addEventListener('mouseup', () => {
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('resize', () => ctx.fillRect(0, 0, canvas.width, canvas.height));
 
-const clearCanva = () => {
+const clearCanvas = () => {
     console.log("Pulito")
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 };
@@ -59,6 +59,7 @@ const sendData = async () => {
 
         } catch (error) {
             console.error("Errore durante la chiamata API:", error);
+            alert(error.message)
         }
     }, 'image/png');
 }

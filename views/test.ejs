@@ -1,14 +1,14 @@
 <div class="column">
     <div>
-        <h1 class="bitcount-grid-double-<uniquifier>">Minister</h1>
-        <h4 class="bitcount-grid-double-<uniquifier>" id="status">Disegna un numero nel riquadro</h4>
+        <h1>Minister</h1>
+        <h4 id="status">Disegna un numero nel riquadro</h4>
     </div>
 
-    <canvas id="prediction" style="border: 2px solid #333; cursor: crosshair;"></canvas>
+    <canvas class="canvas" id="prediction"></canvas>
     <div class="column row">
-        <button onclick="clearCanva()">Pulisci</button>
+        <button onclick="clearCanvas()">Pulisci</button>
         <button onclick="(async () => alert(await sendData()))();">Predici</button>
     </div>
 </div>
 
-<script src="/predict.js"></script>
+<script src="/script/predict.js"></script>
