@@ -7,7 +7,7 @@ canvas.height = 280;
 ctx.fillStyle = "black";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.strokeStyle = "white";
-ctx.lineWidth = 20;
+ctx.lineWidth = 25;
 ctx.lineCap = "round";
 ctx.lineJoin = "round";
 
@@ -41,25 +41,30 @@ const clearCanvas = () => {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 };
 
+const canvasToBlob = async (canvas) => {
+    return new Promise((resolve) => {
+        canvas.toBlob((blob) => {
+            resolve(blob);
+        }, 'image/png');
+    });
+};
+
 const sendData = async () => {
-    return canvas.toBlob(async (blob) => {
-        const formData = new FormData();
-        formData.append('file', blob, 'digit.png');
+    const blob = await canvasToBlob(canvas);
+    const formData = new FormData();
+    formData.append('file', blob, 'digit.png');
 
-        try {
-            console.log(window.location.origin)
-            const response = await fetch(window.location.origin.replace(":8080", ":" + pyPort) + '/prediction', {
-                method: 'POST',
-                body: formData
-            });
-            const data = await response.json();
+    try {
+        const response = await fetch(window.location.origin.replace(":7460", ":" + pyPort) + '/prediction', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.json();
+        console.log("Previsione:", data.prediction);
+        return data.prediction;
 
-            console.log("Previsione:", data.prediction);
-            return data.predication;
-
-        } catch (error) {
-            console.error("Errore durante la chiamata API:", error);
-            alert(error.message)
-        }
-    }, 'image/png');
+    } catch (error) {
+        console.log("Errore durante la chiamata API:", error.message);
+        alert(error.message)
+    }
 }

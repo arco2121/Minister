@@ -9,8 +9,9 @@ import json
 
 app = Flask(__name__)
 CORS(app)
+debug = false
 
-with open("class_map.json", "r") as f:
+with open("model/class_map.json", "r") as f:
     class_map = json.load(f)
 
 
@@ -36,7 +37,7 @@ class SuperNet(nn.Module):
 
 try:
     model = SuperNet(num_classes=len(class_map))
-    model.load_state_dict(torch.load("modellino.pth"))
+    model.load_state_dict(torch.load("model/modellino.pth"))
     model.eval()
 except:
     print("Manca il modellino mi sa")
@@ -64,7 +65,7 @@ def predict():
     img_bytes = file.read()
 
     debug_img = Image.open(io.BytesIO(img_bytes)).convert('L').resize((32, 32))
-    debug_img.save("debug_vista_modello.png")
+    if debug: debug_img.save("debug_vista_modello.png")
 
     tensor = transform_image(img_bytes)
 

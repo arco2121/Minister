@@ -1,4 +1,6 @@
 canvas.addEventListener('mouseup', async () => {
-    document.getElementById("output").value += await sendData();
+    const out = await sendData();
+    console.log(out)
+    document.getElementById("output").value += out + ""
     clearCanvas();
 });

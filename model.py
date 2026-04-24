@@ -63,9 +63,17 @@ class SuperNet(nn.Module):
         return self.classifier(self.features(x))
 
 try:
-    transform = transforms.Compose([
+    transform_emnist = transforms.Compose([
         transforms.Resize((32, 32)),
         transforms.ToTensor(),
+        lambda x: x.transpose(1, 2),
+        transforms.Normalize((0.5,), (0.5,))
+    ])
+
+    transform_hasy = transforms.Compose([
+        transforms.Resize((32, 32)),
+        transforms.ToTensor(),
+        lambda x: 1.0 - x,
         transforms.Normalize((0.5,), (0.5,))
     ])
 
@@ -74,10 +82,10 @@ try:
     hasy_csv = os.path.join(path, "hasy-data-labels.csv")
     hasy_img_dir = path
 
-    emnist_train = datasets.EMNIST(root='./data', split='balanced', train=True, download=True, transform=transform)
+    emnist_train = datasets.EMNIST(root='./data', split='balanced', train=True, download=True, transform=transform_emnist)
     emnist_classes = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabdefghnqrt"
 
-    hasy_train = HASYDataset(csv_file=hasy_csv, img_dir=hasy_img_dir, transform=transform)
+    hasy_train = HASYDataset(csv_file=hasy_csv, img_dir=hasy_img_dir, transform=transform_hasy)
 
     full_class_map = list(emnist_classes) + hasy_train.classes
     num_total_classes = len(full_class_map)
@@ -108,11 +116,11 @@ try:
             optimizer.step()
             running_loss += loss.item()
             i+=1
-            if i%10 == 0: print(f"Allenamento sull'immagine numero {i}")
+            if i%100 == 0: print(f"Allenamento sull'immagine numero {i - 100} / {i}")
         print(f"Epoca {epoch+1} - Loss: {running_loss/len(train_loader):.4f}\n\n")
 
-    torch.save(model.state_dict(), "modellino.pth")
-    with open("class_map.json", "w") as f:
+    torch.save(model.state_dict(), "model/modellino.pth")
+    with open("model/class_map.json", "w") as f:
         json.dump(full_class_map, f)
 
     print("\n\nProcesso completato.")
