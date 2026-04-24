@@ -1,3 +1,5 @@
+from os.path import exists
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -63,6 +65,10 @@ class SuperNet(nn.Module):
         return self.classifier(self.features(x))
 
 try:
+    if exists("model/modellino.pth"):
+        print("Modellino già esistente")
+        exit(0)
+
     transform_emnist = transforms.Compose([
         transforms.Resize((32, 32)),
         transforms.ToTensor(),
@@ -125,6 +131,6 @@ try:
 
     print("\n\nProcesso completato.")
 
-except:
-    print("\n\nProbabile chiusura")
+except Exception as e:
+    print("\n\nProbabile chiusura => ")
     exit(1)
