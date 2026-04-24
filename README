@@ -1,0 +1,12 @@
+---
+title: Minister
+emoji: ✨
+colorFrom: black
+colorTo: white
+sdk: docker
+app_port: 7860
+pinned: true
+license: apache-2.0
+short_description: AI Model to predict text
+allow_custom_scripts: true
+---

@@ -28,7 +28,7 @@ RUN chmod +x start.sh
 
 # Esponi la porta del server Flask (pyPort 3000 come da tuo JS)
 EXPOSE 3000
-EXPOSE 7460
+EXPOSE 7860
 
 # Avvia lo script che gestisce la sequenza: train -> app
 CMD ["./start.sh"]

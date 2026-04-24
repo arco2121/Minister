@@ -55,7 +55,7 @@ const sendData = async () => {
     formData.append('file', blob, 'digit.png');
 
     try {
-        const response = await fetch(window.location.origin.replace(":7460", ":" + pyPort) + '/prediction', {
+        const response = await fetch(window.location.origin.replace(":7860", ":" + pyPort) + '/prediction', {
             method: 'POST',
             body: formData
         });

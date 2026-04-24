@@ -20,7 +20,7 @@ app.use(express.json());
 app.get("/", (_, res) => render(res, 'output'));
 app.get("/test", (_, res) => render(res, 'test'));
 
-server.listen(7460, (err) => {
+server.listen(7860, (err) => {
     if(err) console.error(err);
     console.log("Minister Online => http://localhost:7460/");
 });
