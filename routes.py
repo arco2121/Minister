@@ -37,10 +37,11 @@ class SuperNet(nn.Module):
 
 try:
     model = SuperNet(num_classes=len(class_map))
-    model.load_state_dict(torch.load("model/modellino.pth"))
+    map_location = torch.device('cpu')
+    model.load_state_dict(torch.load("./model/modellino.pth", map_location=map_location))
     model.eval()
-except:
-    print("Manca il modellino mi sa")
+except Exception as e:
+    print("Manca il modellino mi sa", e)
     exit(1)
 
 
