@@ -9,7 +9,7 @@ import json
 
 app = Flask(__name__)
 CORS(app)
-debug = false
+debug = False
 
 with open("model/class_map.json", "r") as f:
     class_map = json.load(f)
