@@ -12,9 +12,8 @@ app_file: routes.py
 short_description: AI Model to predict text
 ---
 
-## AI Character/Text Predictor
-Questo spazio esegue un addestramento automatico all'avvio (EMNIST + HASYv2) e serve un'interfaccia via Flask.
-
 **Sequenza di avvio:**
 1. `npm run train`: Pre-elaborazione e training del modello.
 2. `routes.py`: Esposizione delle API per la predizione.
+
+Oppure utilizzte il notebook su Google Colab o il link ad Hugging Face

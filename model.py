@@ -162,7 +162,7 @@ def train_model():
             if i % 200 == 0:
                 print(f"Epoca [{epoch + 1}/{EPOCHS}] Step [{i}/{len(train_loader)}] Loss: {loss.item():.4f}")
 
-        print(f"✅ Epoca {epoch + 1} completata. Average Loss: {running_loss / len(train_loader):.4f}")
+        print(f"\nEpoca {epoch + 1} completata. Average Loss: {running_loss / len(train_loader):.4f}")
 
     torch.save(model.state_dict(), MODEL_PATH)
     with open(CLASS_MAP_PATH, "w") as f:
