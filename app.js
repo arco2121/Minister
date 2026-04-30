@@ -1,6 +1,7 @@
 const express = require("express");
 const http = require("node:http");
 const ejs = require("ejs");
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const render = (res,page, params = {}) => {
     res.render("index", {
         page,
