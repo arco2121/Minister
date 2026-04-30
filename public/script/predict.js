@@ -1,6 +1,6 @@
 const canvas = document.getElementById('prediction');
 const ctx = canvas.getContext('2d');
-const pyPort = 3000;
+const pyPort = 8080;
 canvas.width = 280;
 canvas.height = 280;
 
