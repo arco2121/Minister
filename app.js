@@ -20,6 +20,12 @@ app.use(express.json());
 app.get("/", (_, res) => render(res, 'output'));
 app.get("/test", (_, res) => render(res, 'test'));
 
+app.use('/python', createProxyMiddleware({ 
+    target: 'http://127.0.0.1:3000', 
+    changeOrigin: true,
+    pathRewrite: {'^/python' : ''}
+}));
+
 server.listen(7860, (err) => {
     if(err) console.error(err);
     console.log("Minister Online => http://localhost:7460/");
