@@ -1,11 +1,4 @@
-canvas.addEventListener('mouseup', async () => {
-    const out = await sendData();
-    console.log(out)
-    document.getElementById("output").value += out + ""
-    clearCanvas();
-});
-
-canvas.addEventListener("touchend", async () => {
+canvas.addEventListener('pointerup', async () => {
     const out = await sendData();
     console.log(out)
     document.getElementById("output").value += out + ""

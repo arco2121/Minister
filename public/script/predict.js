@@ -27,19 +27,13 @@ const draw = (event)=> {
     ctx.moveTo(x, y);
 }
 
-canvas.addEventListener('mousedown', () => isDrawing = true);
-canvas.addEventListener('mouseup', async () => {
+canvas.addEventListener('pointerdown', () => isDrawing = true);
+canvas.addEventListener('pointerup', async () => {
     isDrawing = false;
     ctx.beginPath();
 });
 
-canvas.addEventListener('touchstart', () => isDrawing = true);
-canvas.addEventListener("touchend", async () => {
-    isDrawing = false;
-    ctx.beginPath();
-});
-
-canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('pointermove', draw);
 canvas.addEventListener('resize', () => ctx.fillRect(0, 0, canvas.width, canvas.height));
 
 const clearCanvas = () => {
