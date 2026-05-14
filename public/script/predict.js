@@ -13,13 +13,20 @@ ctx.lineJoin = "round";
 
 let isDrawing = false;
 
-const draw = (event)=> {
+const draw = (event) => {
     if (!isDrawing) return;
+
+    if (event.cancelable) event.preventDefault();
+
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-    const x = (event.clientX - rect.left) * scaleX;
-    const y = (event.clientY - rect.top) * scaleY;
+
+    const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+    const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+
+    const x = (clientX - rect.left) * scaleX;
+    const y = (clientY - rect.top) * scaleY;
 
     ctx.lineTo(x, y);
     ctx.stroke();
@@ -36,7 +43,18 @@ canvas.addEventListener('mouseup', async () => {
 canvas.addEventListener('mousemove', draw);
 
 //Touch
-canvas.addEventListener('touchstart', () => isDrawing = true);
+canvas.addEventListener('touchstart', () => {
+    isDrawing = true;
+    const rect = canvas.getBoundingClientRect();
+    const clientX = e.touches[0].clientX;
+    const clientY = e.touches[0].clientY;
+
+    ctx.beginPath();
+    ctx.moveTo(
+        (clientX - rect.left) * (canvas.width / rect.width),
+        (clientY - rect.top) * (canvas.height / rect.height)
+    );
+});
 canvas.addEventListener('touchend', async () => {
     isDrawing = false;
     ctx.beginPath();
