@@ -1,6 +1,7 @@
 const express = require("express");
 const http = require("node:http");
 const ejs = require("ejs");
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const render = (res,page, params = {}) => {
     res.render("index", {
         page,
@@ -19,6 +20,12 @@ app.use(express.json());
 
 app.get("/", (_, res) => render(res, 'output'));
 app.get("/test", (_, res) => render(res, 'test'));
+
+app.use('/python', createProxyMiddleware({ 
+    target: 'http://127.0.0.1:3000', 
+    changeOrigin: true,
+    pathRewrite: {'^/python' : ''}
+}));
 
 server.listen(7860, (err) => {
     if(err) console.error(err);
