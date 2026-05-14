@@ -1,4 +1,4 @@
-canvas.addEventListener('pointerup', async () => {
+canvas.addEventListener('mouseup', async () => {
     const out = await sendData();
     console.log(out)
     document.getElementById("output").value += out + ""

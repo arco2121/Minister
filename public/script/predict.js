@@ -27,13 +27,13 @@ const draw = (event)=> {
     ctx.moveTo(x, y);
 }
 
-canvas.addEventListener('pointerdown', () => isDrawing = true);
-canvas.addEventListener('pointerup', async () => {
+canvas.addEventListener('mousedown', () => isDrawing = true);
+canvas.addEventListener('mouseup', async () => {
     isDrawing = false;
     ctx.beginPath();
 });
 
-canvas.addEventListener('pointermove', draw);
+canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('resize', () => ctx.fillRect(0, 0, canvas.width, canvas.height));
 
 const clearCanvas = () => {
