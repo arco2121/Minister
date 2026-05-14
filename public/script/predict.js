@@ -33,6 +33,12 @@ canvas.addEventListener('mouseup', async () => {
     ctx.beginPath();
 });
 
+canvas.addEventListener('touchstart', () => isDrawing = true);
+canvas.addEventListener("touchend", async () => {
+    isDrawing = false;
+    ctx.beginPath();
+});
+
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('resize', () => ctx.fillRect(0, 0, canvas.width, canvas.height));
 
