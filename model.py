@@ -36,7 +36,6 @@ class HASYDataset(Dataset):
 
     def __getitem__(self, idx):
         img_name = os.path.join(self.img_dir, self.df.iloc[idx, 0])
-        # .convert('L') carica già in scala di grigi risparmiando memoria
         image = Image.open(img_name).convert('L')
         label_name = self.df.iloc[idx, 2]
         label = self.class_to_idx[label_name]
